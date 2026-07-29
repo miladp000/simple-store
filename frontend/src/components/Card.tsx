@@ -19,14 +19,19 @@ interface CardProps {
 
 const Card = ({product}: CardProps) => {
   const {name, price, image = "", description = "" , _id} = product
-  const {deleteProduct} = useProducts() as {deleteProduct:(id:string)=>Ires};
+  const {deleteProduct} = useProducts() as {deleteProduct:(_id:string)=>Ires};
   const [isEditMode , setIsEditMode] = useState(false);
   const handleDelete = async()=>{
-    const response = await deleteProduct(_id);
-    if (response.success) {
-      Toast("success", response.message);
-    } else {
-      Toast("warning", response.message);
+    if(_id){
+      const response = await deleteProduct(_id);
+      console.log(_id);
+      if (response.success) {
+        Toast("success", response.message);
+      } else {
+        Toast("warning", response.message);
+      }
+    }else{
+      console.log(_id);
     }
   }
   
