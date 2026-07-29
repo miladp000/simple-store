@@ -90,12 +90,22 @@ const CreateForm = ({ mode = "create", initialData = null , editIsDone }: TProp)
     } else {
         if(mode === 'create'){
           createFetch();
+          setInput({
+          _id: "",
+          name: "",
+          price: '',
+          description: "",
+          image: "",
+          createdAt: "",
+          updatedAt: "",
+        })
         }
         else if(mode === 'edit' && editIsDone){
           updateFetch();
           editIsDone();
         }
     }
+    
   };
   return (
     <form
